@@ -1,0 +1,17 @@
+---
+import  ProductsCard  from "@/components/products/ProductsCard.astro";
+import { getProductByCategory } from "@/api/services/serviceProducts";
+
+const { category } = Astro.params;
+if (!category) return;
+const products = await getProductByCategory(category);
+if (!products) return null;
+---
+
+<div>
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 items-stretch"
+  >
+    {products.map((product) => <ProductsCard  product ={product}/>)}
+  </div>
+</div>
