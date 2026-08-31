@@ -7,12 +7,13 @@ interface Props{
     category:Categoria
 }
 const { category} = Astro.props
-const {name,id,slug} =category
+const {name,slug,acf} =category
+const currenCategory = () => slug === Astro.params.category
 ---
 
-<div class={ `flex items-center gap-4 p-3 border-t border-gray-200 last-of-type:border-b`}>
+<div class={ `${currenCategory() && "bg-amber-400"} flex items-center gap-4 p-3 border-t border-gray-200 last-of-type:border-b`}>
     <Picture 
-        src={category.acf.icono}
+        src={acf.icono}
         alt={ `Imagen de categoria ${name}`}
         width={300}
         height={300}

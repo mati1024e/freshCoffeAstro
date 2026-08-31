@@ -1,5 +1,5 @@
 
-const url = "http://freshcoffe.local/wp-json/wp/v2"
+const url = import.meta.env.API_URL
 
 
 export const fechApiUrl = async(endPoints:string) =>{
