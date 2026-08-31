@@ -1,0 +1,17 @@
+---
+import Logo from '@/assets/logo.svg'
+import  {getCategoryProducts} from "@/api/services/serviceCategories"
+import CategoryCard from './CategoryCard.astro'
+
+const categories = await getCategoryProducts()
+if(!categories) return Astro.redirect("/")
+
+
+
+---
+<aside class="md:w-80 md:h-screen border-r border-gray-200">
+    <div class="flex justify-center p-5">
+        <Logo/>
+    </div>
+    {categories.map(category => <CategoryCard category ={category} />)}
+</aside>

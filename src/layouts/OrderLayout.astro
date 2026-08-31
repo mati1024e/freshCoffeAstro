@@ -1,0 +1,13 @@
+---
+import CategoriesSidebar from "@/components/categories/CategoriesSidebar.astro";
+import Layout from "./Layout.astro";
+---
+
+<Layout title="Quiosco de Pedidos">
+  <div class="md:flex">
+    <CategoriesSidebar />
+    <main class="md:flex-1 md:overflow-y-scroll p-5">
+      <slot />
+    </main>
+  </div>
+</Layout>
