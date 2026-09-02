@@ -1,7 +1,7 @@
 import { z } from "astro/zod";
 
 export const ImageSchema = z.object({
-  url: z.string().url(),
+  url: z.string(),
   width: z.number(),
   height: z.number(),
 });
