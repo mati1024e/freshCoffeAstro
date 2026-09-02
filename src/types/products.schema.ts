@@ -21,7 +21,7 @@ const  ProductWithVariablePriceSchema = ProductSchema.extend({
     acf:VariablePriceSchema
 })
 
-const SelectedProductSchema = z.object({
+export const SelectedProductSchema = z.object({
     id:z.number(),
     name:z.string(),
     price:z.number(),
