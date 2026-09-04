@@ -2,14 +2,16 @@ import { useOrderStore } from '@/stores/order'
 import type { OrderItem } from '@/types'
 import { formatCurrency } from '@/utils'
 import { XCircleIcon, PlusIcon, MinusIcon } from '@heroicons/react/24/outline'
+import SizeSelector from './SizeSelector'
 
 interface Props{ 
     item:OrderItem
 }
 
+const MIN_ITEM =1
 export default function ProductDetails({item}:Props) {
-
-  const {deleteItem} = useOrderStore()
+  const isDecreaseDisabled = item.quantity ===MIN_ITEM
+  const {deleteItem,increaseQuantity,decreaseQuantity} = useOrderStore()
 
   return (
     <div className="shadow space-y-1 p-4 bg-white  border-t border-gray-200 mt-5 ">
@@ -27,11 +29,12 @@ export default function ProductDetails({item}:Props) {
         <p className="text-2xl text-amber-500 font-black">
           {formatCurrency(item.price)}
         </p>
-
+        {item.size && <SizeSelector item={item} />}
         <div className="flex justify-center gap-5 px-10 py-2 border border-gray-600 rounded-lg">
           <button
             type="button"
-            onClick={() => {}}
+            disabled={isDecreaseDisabled}
+            onClick={() => decreaseQuantity(item)}
             className='disabled:opacity-20 disabled:cursor-not-allowed cursor-pointer'
           >
             <MinusIcon className="h-6 w-6" />
@@ -43,7 +46,7 @@ export default function ProductDetails({item}:Props) {
 
           <button
             type='button'
-            onClick={() => {}}
+            onClick={() => increaseQuantity(item)}
             className="disabled:opacity-10 disabled:cursor-not-allowed cursor-pointer"
           >
             <PlusIcon className="h-6 w-6" />
