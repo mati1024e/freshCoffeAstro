@@ -1,7 +1,9 @@
 import { useOrderStore } from "@/stores/order";
 import ProductDetails from "./ProductDetails";
+import { calculateTota, formatCurrency } from "@/utils";
 function OrderContents() {
   const { order } = useOrderStore();
+  const total =  calculateTota(order)
   return (
     <>
       {order.length === 0 ? (
@@ -18,6 +20,9 @@ function OrderContents() {
                 />
             )
           })}
+          <h3 className="mt-5 text-2xl font-bold text-right">
+            Total a pagar:{formatCurrency(total)}
+          </h3>
         </>
       )}
     </>
