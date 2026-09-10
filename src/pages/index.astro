@@ -1,12 +1,24 @@
 ---
-
-import Layout from '@/layouts/Layout.astro';
-
+import AuthLayout from "@/layouts/AuthLayout.astro";
 ---
-<Layout
-	title='Inicio'
->
-<h1>Inicio</h1>
 
-</Layout>
+<AuthLayout title="Comenzar nueva orden">
+  <button
+    id="guest-login"
+    class="border border-amber-400 hover:bg-amber-400 px-5 py-3 cursor-pointer rounded-lg mx-auto text-2xl uppercase font-black"
+    >Presiona aquí</button
+  >
+</AuthLayout>
 
+<script>
+  import { actions } from "astro:actions";
+  import { navigate } from "astro:transitions/client";
+
+  const guestLoginBtn = document.querySelector("#guest-login");
+  if (guestLoginBtn) {
+    guestLoginBtn.addEventListener("click", async (evt) => {
+      const { data, error } = await actions.auth.signInAsGuest();
+	  if(data && !error ) navigate('/order/coffee')
+    });
+  }
+</script>
