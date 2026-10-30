@@ -49,7 +49,7 @@ export const useOrderStore = create<Store>()((set, get) => ({
       const newItem = {
         ...product,
         quantity: 1,
-        subtotal: product.price,
+        subtotal: +product.price,
         key,
       };
       order = [...currentOrder, newItem];

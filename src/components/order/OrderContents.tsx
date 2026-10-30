@@ -1,6 +1,7 @@
 import { useOrderStore } from "@/stores/order";
 import ProductDetails from "./ProductDetails";
 import { calculateTota, formatCurrency } from "@/utils";
+import SubmitOrderForm from "./SubmitOrderForm";
 function OrderContents() {
   const { order } = useOrderStore();
   const total =  calculateTota(order)
@@ -23,6 +24,8 @@ function OrderContents() {
           <h3 className="mt-5 text-2xl font-bold text-right">
             Total a pagar:{formatCurrency(total)}
           </h3>
+
+          <SubmitOrderForm />
         </>
       )}
     </>

@@ -23,9 +23,9 @@ const  ProductWithVariablePriceSchema = ProductSchema.extend({
 
 export const SelectedProductSchema = z.object({
     id:z.number(),
-    name:z.string(),
-    price:z.number(),
-    size:z.optional(z.string())
+    name:z.string().min(1,{error:'El nombre del producto es obligatorio'}),
+    price:z.number().min(1,{error:'Precio no valido'}),
+    size:z.optional(z.string().min(1,{error:'Tamaño no valido'}))
 })
 
 
