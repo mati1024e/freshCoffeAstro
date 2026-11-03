@@ -1,0 +1,19 @@
+---
+import AdminProductLayout from "@/layouts/AdminProductLayout.astro";
+import {getProducts}  from '@/api/services/serviceProducts'
+import ProductsTable from "@/components/admin/products/ProductsTable.astro";
+const PRODUCTS_PER_PAGE = 10
+const PAGE=Astro.url.searchParams.get('page') ?? 1
+
+const { products,totalPage} = await getProducts({cantPage:PRODUCTS_PER_PAGE,page:+PAGE})
+
+// if(!statusRes) return Astro.redirect('/admin/products?page=1')
+---
+
+<AdminProductLayout 
+    title="Administrar Productos" 
+    page={+PAGE} 
+    totalPages={+totalPage!}
+>
+    <ProductsTable products={products} />
+</AdminProductLayout>

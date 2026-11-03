@@ -24,3 +24,17 @@ export async function getFetchApiAstroProduct(idProduct:string) {
     
     return data
 }
+
+export async function getProducts({cantPage,page}:{cantPage:number,page:number}) {
+    const {fetchApi,jsonData} =  await fechApiUrl(`/freshcoffee_products?per_page=${cantPage}&page=${page}`)
+    // const  statusRes = fetchApi.ok
+    const products= ProductsSchema.parse(jsonData)
+    // console.log(products)
+    const totalPage = fetchApi.headers.get('X-WP-TotalPages')
+   
+  
+    // console.log(totalPage)
+    
+    
+    return {products,totalPage}
+}
